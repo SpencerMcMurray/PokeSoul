@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import IndexPage from './components/IndexPage';
+import './styles/App.css';
 
 export default class App extends Component {
   render() {
     return (
-      <div className="App">
-          <h1>Hello there</h1>
+      <div id="main">
+        <IndexPage />
       </div>
     );
   }
