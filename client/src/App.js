@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import IndexPage from "./components/IndexPage";
-import Navigation from "./components/Navigation";
 import "./styles/App.css";
+
+import IndexPage from "./components/IndexPage";
+import EditorPage from "./components/EditorPage";
+import Navigation from "./components/Navigation";
 
 export default class App extends Component {
   render() {
@@ -10,6 +12,7 @@ export default class App extends Component {
       <Router>
         <Navigation />
         <Route path="/" exact component={IndexPage} />
+        <Route path="/editor" component={EditorPage} />
       </Router>
     );
   }
