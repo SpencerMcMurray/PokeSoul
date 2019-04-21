@@ -9,7 +9,7 @@ Stores data in cookies and in the URL for easy sharing and reloading.
 
 # Get Started
 
-This website uses React in the front-end and Flask Restful in the back-end,
+This website uses React in the front-end and Node/Express in the back-end,
 to get started follow these steps:
 
 * Clone the repository
