@@ -2,12 +2,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
-const mainLinks = [];
+const mainLinks = [
+  {
+    href: "/editor",
+    icon: "",
+    title: "Editor",
+    q: { x: "hello there" }
+  }
+];
 
 const makeNavItem = (link, idx) => {
   return (
     <Nav.Item key={idx}>
-      <Nav.Link as={Link} to={link.href}>
+      <Nav.Link as={Link} to={{ pathname: link.href, query: link.q }}>
         {link.icon} {link.title}
       </Nav.Link>
     </Nav.Item>
