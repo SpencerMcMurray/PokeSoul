@@ -2,19 +2,25 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
+const pairs = [
+  { a: "Snorlax", b: "Politoed" },
+  { a: "Pikachu", b: "Mudkip" },
+  { a: "Magneton", b: "Politoed" }
+];
+
 const mainLinks = [
   {
-    href: "/editor",
     icon: "",
     title: "Editor",
-    q: { x: "hello there" }
+    pairs: pairs,
+    href: "/editor/" + encodeURIComponent(JSON.stringify(pairs))
   }
 ];
 
 const makeNavItem = (link, idx) => {
   return (
     <Nav.Item key={idx}>
-      <Nav.Link as={Link} to={{ pathname: link.href, query: link.q }}>
+      <Nav.Link as={Link} to={link.href} params={link.pairs}>
         {link.icon} {link.title}
       </Nav.Link>
     </Nav.Item>

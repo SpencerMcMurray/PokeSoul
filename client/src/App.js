@@ -12,7 +12,7 @@ export default class App extends Component {
       <Router>
         <Navigation />
         <Route path="/" exact component={IndexPage} />
-        <Route path="/editor" component={EditorPage} />
+        <Route path="/editor/:pairs" component={EditorPage} />
       </Router>
     );
   }
