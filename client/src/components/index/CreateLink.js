@@ -8,7 +8,7 @@ export default class CreateLink extends Component {
     return (
       <div className="text-center d-flex container justify-content-center align-items-center">
         <ScrollAnimation delay={1750} animateIn="bounceIn">
-          <Link to="/editor">
+          <Link to="/editor/[]">
             <Button size="lg" variant="success">
               Create a Soul Link
             </Button>

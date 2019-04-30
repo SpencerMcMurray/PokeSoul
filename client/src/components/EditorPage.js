@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import PokeDisplay from "./editor/PokeDisplay";
+import Header from "./editor/Header";
 
 export default class EditorPage extends Component {
+  // Store in local storage as soon as we get the url
   state = {
     pairs: JSON.parse(decodeURIComponent(this.props.match.params.pairs))
   };
@@ -8,13 +11,8 @@ export default class EditorPage extends Component {
   render() {
     return (
       <div className="container text-center">
-        {this.state.pairs.map((item, idx) => {
-          return (
-            <p key={idx}>
-              {item.a} : {item.b}
-            </p>
-          );
-        })}
+        <Header />
+        <PokeDisplay pairs={this.state.pairs} />
       </div>
     );
   }

@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
+// Will be fetched from local storage, or empty initially
 const pairs = [
-  { a: "Snorlax", b: "Politoed" },
-  { a: "Pikachu", b: "Mudkip" },
-  { a: "Magneton", b: "Politoed" }
+  { a: "11", b: "22" },
+  { a: "63", b: "74" },
+  { a: "55", b: "86" },
+  { a: "47", b: "48" },
+  { a: "39", b: "30" }
 ];
 
 const mainLinks = [

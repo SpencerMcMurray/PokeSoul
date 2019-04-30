@@ -1,12 +1,17 @@
 .title-font {
-    font-family: "Raleway", sans-serif;
+  font-family: "Raleway", sans-serif;
+}
+
+.header {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
 
 .center-stage {
-    padding-top: 20vh;
-    padding-bottom: 20vh;
+  padding-top: 20vh;
+  padding-bottom: 20vh;
 }
 
 #main {
-    font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
