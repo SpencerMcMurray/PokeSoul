@@ -4,11 +4,11 @@ import { Navbar, Nav } from "react-bootstrap";
 
 // Will be fetched from local storage, or empty initially
 const pairs = [
-  { a: "11", b: "22" },
-  { a: "63", b: "74" },
-  { a: "55", b: "86" },
-  { a: "47", b: "48" },
-  { a: "39", b: "30" }
+  { a: "11", b: "22", killed: false },
+  { a: "63", b: "74", killed: true },
+  { a: "55", b: "86", killed: false },
+  { a: "47", b: "48", killed: false },
+  { a: "39", b: "800", killed: true }
 ];
 
 const mainLinks = [

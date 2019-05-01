@@ -1,12 +1,19 @@
 import React, { Component } from "react";
+import PokePair from "./PokePair";
 
 export default class PokeDisplay extends Component {
-  state = {
-    pairs: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      pairs: [],
+      hide: " d-none"
+    };
+    this.flipKilled = this.flipKilled.bind(this);
+  }
 
-  fetchFromApi(aId, bId) {
-    let newPair = {};
+  // Fetches all pokemon data on the ids given and updates the state
+  fetchFromApi(aId, bId, killed) {
+    let newPair = { killed: killed };
     fetch("https://pokeapi.co/api/v2/pokemon/" + aId)
       .then(res => res.json())
       .then(res => (newPair.a = res))
@@ -15,23 +22,36 @@ export default class PokeDisplay extends Component {
           .then(res => res.json())
           .then(res => (newPair.b = res))
       )
-      .then(() => this.setState({ pairs: [...this.state.pairs, newPair] }))
-      .then(() => console.log(newPair));
+      .then(() => this.setState({ pairs: [...this.state.pairs, newPair] }));
   }
 
   componentDidMount() {
-    this.props.pairs.map(pair => this.fetchFromApi(pair.a, pair.b));
+    // Hide the list of pairs until theyre all loaded
+    this.setState({ hide: " d-none" });
+    this.props.pairs.map(pair =>
+      this.fetchFromApi(pair.a, pair.b, pair.killed)
+    );
+    this.setState({ hide: "" });
+  }
+
+  flipKilled(pair) {
+    // Find the pair in the list and flip its killed value
+    let idx = this.state.pairs.indexOf(pair);
+    let newPairs = this.state.pairs;
+    newPairs[idx].killed = !newPairs[idx].killed;
+    this.setState({ pairs: newPairs });
   }
 
   render() {
     return (
-      <div className="border border-primary">
-        <div className="my-4 d-flex flex-wrap">
+      <div
+        className={"border rounded border-secondary" + this.state.hide}
+        style={{ minHeight: "50vh" }}
+      >
+        <div className="d-flex flex-wrap">
           {this.state.pairs.map((item, idx) => {
             return (
-              <div key={idx} className="col-md-4">
-                {item.a.name} : {item.b.name}
-              </div>
+              <PokePair handleKill={this.flipKilled} key={idx} pair={item} />
             );
           })}
         </div>
