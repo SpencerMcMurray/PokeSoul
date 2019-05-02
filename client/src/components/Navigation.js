@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
 // Will be fetched from local storage, or empty initially
-const pairs = [
+let pairs = [
   { a: "11", b: "22", killed: false },
   { a: "63", b: "74", killed: true },
   { a: "55", b: "86", killed: false },
