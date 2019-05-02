@@ -44,11 +44,8 @@ export default class PokeDisplay extends Component {
 
   render() {
     return (
-      <div
-        className={"border rounded border-secondary" + this.state.hide}
-        style={{ minHeight: "50vh" }}
-      >
-        <div className="d-flex flex-wrap">
+      <div className={"border rounded border-secondary" + this.state.hide}>
+        <div className="d-flex flex-wrap justify-content-around mb-2">
           {this.state.pairs.map((item, idx) => {
             return (
               <PokePair handleKill={this.flipKilled} key={idx} pair={item} />
