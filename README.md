@@ -9,10 +9,10 @@ Stores data in cookies and in the URL for easy sharing and reloading.
 
 # Get Started
 
-This website uses React in the front-end and Node/Express in the back-end,
+This website uses pure React so its able to use GitHub Pages,
 to get started follow these steps:
 
 * Clone the repository
 * cd into the cloned folder
 * Execute `npm install` and `npm run client-install` to install dependencies
-* Execute `npm run dev` to start the development server
+* Execute `npm run client` to start the development server
