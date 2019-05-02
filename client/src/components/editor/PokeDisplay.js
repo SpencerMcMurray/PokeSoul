@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PokePair from "./PokePair";
+import ButtonDisplay from "./ButtonDisplay";
 
 export default class PokeDisplay extends Component {
   constructor(props) {
@@ -44,15 +45,19 @@ export default class PokeDisplay extends Component {
 
   render() {
     return (
-      <div className={"border rounded border-secondary" + this.state.hide}>
-        <div className="d-flex flex-wrap justify-content-around mb-2">
-          {this.state.pairs.map((item, idx) => {
-            return (
-              <PokePair handleKill={this.flipKilled} key={idx} pair={item} />
-            );
-          })}
+      <React.Fragment>
+        <h1 className="title-font pb-2">Pairs</h1>
+        <ButtonDisplay />
+        <div className={"border rounded border-secondary" + this.state.hide}>
+          <div className="d-flex flex-wrap justify-content-around mb-2">
+            {this.state.pairs.map((item, idx) => {
+              return (
+                <PokePair handleKill={this.flipKilled} key={idx} pair={item} />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

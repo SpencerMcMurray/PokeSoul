@@ -8,7 +8,8 @@ let pairs = [
   { a: "63", b: "74", killed: true },
   { a: "55", b: "86", killed: false },
   { a: "47", b: "48", killed: false },
-  { a: "39", b: "800", killed: true }
+  { a: "39", b: "800", killed: true },
+  { a: "329", b: "80", killed: true }
 ];
 
 const mainLinks = [
