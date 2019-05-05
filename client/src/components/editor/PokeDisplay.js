@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PokePair from "./PokePair";
 import ButtonDisplay from "./ButtonDisplay";
+const Pokedex = require("pokeapi-js-wrapper");
+const P = new Pokedex.Pokedex();
 
 export default class PokeDisplay extends Component {
   constructor(props) {
@@ -13,24 +15,18 @@ export default class PokeDisplay extends Component {
   }
 
   // Fetches all pokemon data on the ids given and updates the state
-  fetchFromApi(aId, bId, killed) {
-    let newPair = { killed: killed };
-    fetch("https://pokeapi.co/api/v2/pokemon/" + aId)
-      .then(res => res.json())
-      .then(res => (newPair.a = res))
-      .then(res =>
-        fetch("https://pokeapi.co/api/v2/pokemon/" + bId)
-          .then(res => res.json())
-          .then(res => (newPair.b = res))
-      )
-      .then(() => this.setState({ pairs: [...this.state.pairs, newPair] }));
+  async fetchFromApi(aId, bId, killed, found) {
+    let newPair = { killed: killed, found: found };
+    newPair.a = await P.getPokemonByName(aId);
+    newPair.b = await P.getPokemonByName(bId);
+    this.setState({ pairs: [...this.state.pairs, await newPair] });
   }
 
   componentDidMount() {
     // Hide the list of pairs until theyre all loaded
     this.setState({ hide: " d-none" });
     this.props.pairs.map(pair =>
-      this.fetchFromApi(pair.a, pair.b, pair.killed)
+      this.fetchFromApi(pair.a, pair.b, pair.killed, pair.found)
     );
     this.setState({ hide: "" });
   }

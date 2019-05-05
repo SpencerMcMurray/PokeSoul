@@ -4,12 +4,24 @@ import { Navbar, Nav } from "react-bootstrap";
 
 // Will be fetched from local storage, or empty initially
 let pairs = [
-  { a: "11", b: "22", killed: false },
-  { a: "63", b: "74", killed: true },
-  { a: "55", b: "86", killed: false },
-  { a: "47", b: "48", killed: false },
-  { a: "39", b: "800", killed: true },
-  { a: "329", b: "80", killed: true }
+  {
+    a: 1,
+    b: 2,
+    killed: false,
+    found: "Route 10"
+  },
+  {
+    a: 3,
+    b: 4,
+    killed: false,
+    found: "Pallet Town"
+  },
+  {
+    a: 5,
+    b: 6,
+    killed: false,
+    found: "Route 123"
+  }
 ];
 
 const mainLinks = [

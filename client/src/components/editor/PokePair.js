@@ -45,6 +45,7 @@ export default class PokePair extends Component {
           >
             <h1>{this.state.isFainted.text}</h1>
           </div>
+          <h5 className="title-font">{this.props.pair.found}</h5>
           <Pokemon poke={this.props.pair.a} />
           <Pokemon poke={this.props.pair.b} />
         </CardGroup>
