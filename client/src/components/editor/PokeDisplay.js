@@ -16,6 +16,12 @@ export default class PokeDisplay extends Component {
       shareShow: false
     };
     this.flipKilled = this.flipKilled.bind(this);
+    this.pushToPairs = this.pushToPairs.bind(this);
+  }
+
+  async pushToPairs(a, b, found) {
+    console.log(a, b, found);
+    await this.fetchFromApi(a, b, false, found);
   }
 
   // Fetches all pokemon data on the ids given and updates the state
@@ -56,7 +62,8 @@ export default class PokeDisplay extends Component {
           pairs={this.state.pairs}
           add={{
             show: this.state.addModalShow,
-            onHide: () => this.setState({ addModalShow: false })
+            onHide: () => this.setState({ addModalShow: false }),
+            add: this.pushToPairs
           }}
           generate={{
             show: this.state.generateShow,

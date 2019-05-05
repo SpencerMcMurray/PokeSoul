@@ -11,6 +11,7 @@ export default class ModalManager extends Component {
           show={this.props.add.show}
           onHide={this.props.add.onHide}
           pairs={this.props.pairs}
+          add={this.props.add.add}
         />
         <GenerateModal
           show={this.props.generate.show}
