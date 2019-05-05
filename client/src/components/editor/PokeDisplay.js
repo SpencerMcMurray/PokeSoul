@@ -9,7 +9,10 @@ export default class PokeDisplay extends Component {
     super(props);
     this.state = {
       pairs: [],
-      hide: " d-none"
+      hide: " d-none",
+      addModalShow: false,
+      generateShow: false,
+      shareShow: false
     };
     this.flipKilled = this.flipKilled.bind(this);
   }
@@ -43,7 +46,25 @@ export default class PokeDisplay extends Component {
     return (
       <React.Fragment>
         <h1 className="title-font pb-2">Pairs</h1>
-        <ButtonDisplay />
+        <ButtonDisplay
+          handleAdd={() => this.setState({ addModalShow: true })}
+          handleGenerate={() => this.setState({ generateShow: true })}
+          handleShare={() => this.setState({ shareShow: true })}
+        />
+        <ModalManager
+          add={{
+            show: this.state.addModalShow,
+            onHide: () => this.setState({ addModalShow: false })
+          }}
+          generate={{
+            show: this.state.generateShow,
+            onHide: () => this.setState({ generateShow: false })
+          }}
+          share={{
+            show: this.state.shareShow,
+            onHide: () => this.setState({ shareShow: false })
+          }}
+        />
         <div className={"border rounded border-secondary" + this.state.hide}>
           <div className="d-flex flex-wrap justify-content-around mb-2">
             {this.state.pairs.map((item, idx) => {
