@@ -32,7 +32,8 @@ export default class PokePair extends Component {
           this.handleKill();
         }}
       >
-        <CardGroup className="flex-row flex-nowrap">
+        <h5 className="title-font flex-row">{this.props.pair.found}</h5>
+        <CardGroup className="flex-row flex-nowrap justify-content-center">
           <div
             className={
               "d-flex justify-content-center align-items-center title-font " +
@@ -45,7 +46,6 @@ export default class PokePair extends Component {
           >
             <h1>{this.state.isFainted.text}</h1>
           </div>
-          <h5 className="title-font">{this.props.pair.found}</h5>
           <Pokemon poke={this.props.pair.a} />
           <Pokemon poke={this.props.pair.b} />
         </CardGroup>

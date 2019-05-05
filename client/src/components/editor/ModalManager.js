@@ -10,14 +10,17 @@ export default class ModalManager extends Component {
         <AddPairModal
           show={this.props.add.show}
           onHide={this.props.add.onHide}
+          pairs={this.props.pairs}
         />
         <GenerateModal
           show={this.props.generate.show}
           onHide={this.props.generate.onHide}
+          pairs={this.props.pairs}
         />
         <ShareModal
           show={this.props.share.show}
           onHide={this.props.share.onHide}
+          pairs={this.props.pairs}
         />
       </React.Fragment>
     );

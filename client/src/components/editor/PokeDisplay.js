@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PokePair from "./PokePair";
 import ButtonDisplay from "./ButtonDisplay";
+import ModalManager from "./ModalManager";
 const Pokedex = require("pokeapi-js-wrapper");
 const P = new Pokedex.Pokedex();
 
@@ -52,6 +53,7 @@ export default class PokeDisplay extends Component {
           handleShare={() => this.setState({ shareShow: true })}
         />
         <ModalManager
+          pairs={this.state.pairs}
           add={{
             show: this.state.addModalShow,
             onHide: () => this.setState({ addModalShow: false })

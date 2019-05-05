@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
-// Will be fetched from local storage, or empty initially
+// Will be fetched from cookies, or empty initially
 let pairs = [
   {
     a: 1,

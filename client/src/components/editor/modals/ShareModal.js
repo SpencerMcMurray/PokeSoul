@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 
+const baseUrl = "http://localhost:3000/editor/";
+
+const genUrlFromPairs = pairs => {
+  let urlPairs = [];
+  for (let pair in pairs) {
+    pair = pairs[pair];
+    urlPairs.push({
+      a: pair.a.id,
+      b: pair.b.id,
+      killed: pair.killed,
+      found: pair.found
+    });
+  }
+  return encodeURIComponent(JSON.stringify(urlPairs));
+};
+
 export default class AddPairModal extends Component {
   render() {
     return (
@@ -12,15 +28,15 @@ export default class AddPairModal extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Share Link
+            Shareable Link
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
+          <h4 className="title-font">Use this link to share your Soul Link</h4>
+          <p style={{ wordWrap: "break-word" }}>
+            <a href={baseUrl + genUrlFromPairs(this.props.pairs)}>
+              {baseUrl + genUrlFromPairs(this.props.pairs)}
+            </a>
           </p>
         </Modal.Body>
         <Modal.Footer>
