@@ -20,15 +20,17 @@ export default class PokeDisplay extends Component {
   }
 
   async pushToPairs(a, b, found) {
-    console.log(a, b, found);
     await this.fetchFromApi(a, b, false, found);
+    console.log(this.state.pairs);
   }
 
   // Fetches all pokemon data on the ids given and updates the state
   async fetchFromApi(aId, bId, killed, found) {
     let newPair = { killed: killed, found: found };
     newPair.a = await P.getPokemonByName(aId);
+    newPair.a.types.reverse();
     newPair.b = await P.getPokemonByName(bId);
+    newPair.b.types.reverse();
     this.setState({ pairs: [...this.state.pairs, await newPair] });
   }
 

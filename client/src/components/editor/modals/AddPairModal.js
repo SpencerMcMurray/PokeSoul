@@ -23,8 +23,6 @@ export default class AddPairModal extends Component {
       pickedB: "1",
       found: ""
     };
-
-    this.addPair = this.addPair.bind(this);
   }
 
   async componentDidMount() {
@@ -34,17 +32,9 @@ export default class AddPairModal extends Component {
       searchAMons: await allMons,
       searchBMons: await allMons
     });
-    console.log(await this.state);
-  }
-
-  addPair() {
-    console.log(this.state.pickedA, this.state.pickedB, this.state.found);
-    this.props.add(this.state.pickedA, this.state.pickedB, this.state.found);
-    this.props.onHide();
   }
 
   render() {
-    console.log(this.props);
     return (
       <Modal
         {...this.props}
@@ -61,6 +51,7 @@ export default class AddPairModal extends Component {
               <Form.Group as={Col} controlId="found">
                 <Form.Label>Location Met</Form.Label>
                 <Form.Control
+                  placeholder="Enter location"
                   value={this.state.found}
                   onChange={evt => this.setState({ found: evt.target.value })}
                 />
@@ -98,7 +89,17 @@ export default class AddPairModal extends Component {
             </Form.Row>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.add} variant="success">
+            <Button
+              onClick={evt => {
+                this.props.add(
+                  this.state.pickedA,
+                  this.state.pickedB,
+                  this.state.found
+                );
+                this.props.onHide();
+              }}
+              variant="success"
+            >
               Add
             </Button>
             <Button onClick={this.props.onHide}>Close</Button>

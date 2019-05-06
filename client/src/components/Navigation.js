@@ -6,19 +6,19 @@ import { Navbar, Nav } from "react-bootstrap";
 let pairs = [
   {
     a: 1,
-    b: 2,
+    b: 20,
     killed: false,
     found: "Route 10"
   },
   {
     a: 3,
-    b: 4,
+    b: 47,
     killed: false,
     found: "Pallet Town"
   },
   {
     a: 5,
-    b: 6,
+    b: 56,
     killed: false,
     found: "Route 123"
   }
