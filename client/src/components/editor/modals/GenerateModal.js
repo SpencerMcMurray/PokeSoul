@@ -2,29 +2,35 @@ import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Party from "../Party";
 
-// Gets all permutations of an array
-const perms = arr => {
-  let ret = [];
-
-  for (let i = 0; i < arr.length; i = i + 1) {
-    let rest = perms(arr.slice(0, i).concat(arr.slice(i + 1)));
-
-    if (!rest.length) {
-      ret.push([arr[i]]);
-    } else {
-      for (let j = 0; j < rest.length; j = j + 1) {
-        ret.push([arr[i]].concat(rest[j]));
-      }
-    }
+// Gets all combinations of an array
+const combs = arr => {
+  if (arr.length === 0) {
+    return [[]];
   }
-  return ret;
+  let cs = [];
+  combs(arr.slice(1)).map(item => {
+    cs.push(item);
+    cs.push(item.concat([arr[0]]));
+    return item;
+  });
+  return cs;
 };
 
 const getPartyBST = party => {
-  const sumStats = (acc, cur) => acc + cur.base_stat;
-  const sumPartyA = (acc, cur) => acc + cur.a.stats.reduce(sumStats);
-  const sumPartyB = (acc, cur) => acc + cur.b.stats.reduce(sumStats);
-  return (party.reduce(sumPartyA) + party.reduce(sumPartyB)) / 2;
+  let sumA = 0;
+  let sumB = 0;
+  for (let pair in party) {
+    pair = party[pair];
+    for (let baseStatA in pair.a.stats) {
+      baseStatA = pair.a.stats[baseStatA].base_stat;
+      sumA += baseStatA;
+    }
+    for (let baseStatB in pair.b.stats) {
+      baseStatB = pair.b.stats[baseStatB].base_stat;
+      sumB += baseStatB;
+    }
+  }
+  return sumA + sumB / 2;
 };
 
 // Gets all valid parties from the given pairs
@@ -34,38 +40,35 @@ const getPartiesFromPairs = pairs => {
 
   // Remove any parties with over 6 members
   // Then remove any parties with typing conflicts
-  let allParties = perms(livingPairs);
-  // .filter(team => team.length <= 6)
-  // .filter(team => {
-  //   let typeSet = new Set();
-  //   for (let pair in team) {
-  //     // Do individually to avoid teams with broken pairs
-  //     if (typeSet.has(pair.a.types[0])) {
-  //       return false;
-  //     }
-  //     typeSet.add(pair.a.types[0]);
-  //     if (typeSet.has(pair.b.types[0])) {
-  //       return false;
-  //     }
-  //     typeSet.add(pair.b.types[0]);
-  //   }
-  //   return true;
-  // });
+  let allParties = combs(livingPairs);
+  allParties = allParties
+    .filter(team => team.length <= 6 && team.length > 0)
+    .filter(team => {
+      let typeSet = new Set();
+      for (let pair in team) {
+        pair = team[pair];
+        // Do individually to avoid teams with broken pairs
+        if (typeSet.has(pair.a.types[0].type.name)) {
+          return false;
+        }
+        typeSet.add(pair.a.types[0].type.name);
+        if (typeSet.has(pair.b.types[0].type.name)) {
+          return false;
+        }
+        typeSet.add(pair.b.types[0].type.name);
+      }
+      return true;
+    });
 
+  // Sort parties in descending order
   allParties.sort(
     (partyB, partyA) => getPartyBST(partyA) - getPartyBST(partyB)
   );
-  console.log(allParties);
-  return [pairs];
+  return allParties;
 };
 
 export default class GenerateModal extends Component {
-  state = {
-    parties: this.props.pairs
-  };
-
   render() {
-    console.log(this.props);
     return (
       <Modal
         {...this.props}
@@ -79,7 +82,7 @@ export default class GenerateModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="d-flex flex-wrap justify-content-center">
-          {getPartiesFromPairs(this.state.parties).map((party, idx) => (
+          {getPartiesFromPairs(this.props.pairs).map((party, idx) => (
             <Party idx={idx + 1} key={idx} members={party} />
           ))}
         </Modal.Body>
