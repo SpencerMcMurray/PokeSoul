@@ -1,24 +1,22 @@
 {
-  "name": "soul-link-manager",
-  "version": "1.0.0",
-  "description": "Management system for Pokemon Soul Link challenge",
-  "main": "server.js",
-  "scripts": {
-    "client-install": "cd client && npm install",
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "devDependencies": {
-    "nodemon": "^1.14.6"
-  },
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "concurrently": "^3.5.1",
-    "express": "^4.16.2",
+    "pokeapi-js-wrapper": "^1.1.1",
+    "react": "^16.2.0",
     "react-animate-on-scroll": "^2.1.5",
     "react-bootstrap": "^1.0.0-beta.8",
-    "react-router-dom": "^5.0.0"
-  }
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000"
 }
