@@ -64,7 +64,7 @@ const getPartiesFromPairs = pairs => {
   allParties.sort(
     (partyB, partyA) => getPartyBST(partyA) - getPartyBST(partyB)
   );
-  return allParties;
+  return allParties.slice(0, 10);
 };
 
 export default class GenerateModal extends Component {
@@ -88,7 +88,8 @@ export default class GenerateModal extends Component {
         </Modal.Body>
         <Modal.Footer>
           <small className="text-muted mr-auto">
-            Parties are sorted in descending order by total BST
+            Parties are sorted in descending order by total BST averaged between
+            players
           </small>
           <Button onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>

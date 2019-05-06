@@ -11,6 +11,7 @@ export default class PokeDisplay extends Component {
     this.state = {
       pairs: [],
       hide: " d-none",
+      border: "",
       addModalShow: false,
       generateShow: false,
       shareShow: false
@@ -21,7 +22,6 @@ export default class PokeDisplay extends Component {
 
   async pushToPairs(a, b, found) {
     await this.fetchFromApi(a, b, false, found);
-    console.log(this.state.pairs);
   }
 
   // Fetches all pokemon data on the ids given and updates the state
@@ -41,6 +41,12 @@ export default class PokeDisplay extends Component {
       this.fetchFromApi(pair.a, pair.b, pair.killed, pair.found)
     );
     this.setState({ hide: "" });
+  }
+
+  componentDidUpdate() {
+    if (this.state.border === "" && this.state.pairs.length > 0) {
+      this.setState({ border: "border rounded border-secondary" });
+    }
   }
 
   flipKilled(pair) {
@@ -76,7 +82,7 @@ export default class PokeDisplay extends Component {
             onHide: () => this.setState({ shareShow: false })
           }}
         />
-        <div className={"border rounded border-secondary" + this.state.hide}>
+        <div className={this.state.border + this.state.hide}>
           <div className="d-flex flex-wrap justify-content-around mb-2">
             {this.state.pairs.map((item, idx) => {
               return (
