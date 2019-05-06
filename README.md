@@ -14,5 +14,5 @@ to get started follow these steps:
 
 * Clone the repository
 * cd into the cloned folder
-* Execute `npm install` and `npm run client-install` to install dependencies
-* Execute `npm run client` to start the development server
+* Execute `npm install` to install dependencies
+* Execute `npm start` to start the development server
