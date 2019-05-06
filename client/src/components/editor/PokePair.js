@@ -25,7 +25,7 @@ export default class PokePair extends Component {
   render() {
     return (
       <div
-        className="col-md-4 mt-2 pair"
+        className="col-lg-4 mt-2 pair"
         style={{ minWidth: "24vh" }}
         onClick={() => {
           this.props.handleKill(this.props.pair);

@@ -5,7 +5,7 @@ import Pokemon from "./Pokemon";
 export default class Party extends Component {
   render() {
     return (
-      <div className="col-md-6 mt-4">
+      <div className="col-lg-6 mt-4">
         <h4 className="title-font text-center">
           Party Option #{this.props.idx}
         </h4>
