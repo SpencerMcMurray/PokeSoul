@@ -1,11 +1,18 @@
 # PokéSoul
 
 A simple management system for the popular Soul Link Pokémon challenge.
-This website will look at all the options you give it, and show you the
+This website will look at all the pairs you give it, and show you the
 teams you can create that satisfy the rules of the challenge. The system
-is optimized to maximize the number of members in the teams.
+is optimized to maximize total base stat total for both player's parties.
 
-Stores data in cookies and in the URL for easy sharing and reloading.
+For the rules of the challenge see
+[here](https://www.deviantart.com/nuzlockefamily/journal/Soul-Link-Randomized-Nuzlocke-511651842).
+The main challenge this site addresses is finding the best party that
+satisfies the rules for both players at any given time.
+
+Soul Links can be initalized and the data will be stored and loaded from your
+cookies allowing for easy continuation. A sharable link can also be made so
+you can easily share your experience with your friends.
 
 # Get Started
 
