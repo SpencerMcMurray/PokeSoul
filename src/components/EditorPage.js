@@ -16,6 +16,7 @@ const validPairs = pairs => {
 
 const getPairsFromUrlOrCookies = urlPairs => {
   try {
+    console.log("url pairs:", urlPairs);
     let pairs = JSON.parse(decodeURIComponent(urlPairs));
     if (!validPairs(pairs[0])) {
       return [];
