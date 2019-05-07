@@ -26,6 +26,7 @@ const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 export default class Pokemon extends Component {
   render() {
+    console.log(this.props.poke);
     return (
       <Card style={{ width: "11rem", minWidth: "12vh" }}>
         <Card.Header className="title-font">
