@@ -14,14 +14,16 @@ const validPairs = pairs => {
   return false;
 };
 
-const getPairsFromUrlOrCookies = urlPairs => {
+const getPairsFromUrl = urlPairs => {
   try {
-    console.log("url pairs:", urlPairs);
     let pairs = JSON.parse(decodeURIComponent(urlPairs));
-    if (!validPairs(pairs[0])) {
+    // We want to start a new soul link or invalid input
+    if (pairs.new || !validPairs(pairs[0])) {
       return [];
     }
+    // Otherwise load the url
     return pairs;
+    // In the case we get any error, return the empty list
   } catch (e) {
     return [];
   }
@@ -30,14 +32,25 @@ const getPairsFromUrlOrCookies = urlPairs => {
 export default class EditorPage extends Component {
   // Store in local storage as soon as we get the url
   state = {
-    pairs: getPairsFromUrlOrCookies(this.props.match.params.pairs)
+    toLoad: JSON.parse(decodeURIComponent(this.props.match.params.pairs)).load
+      ? true
+      : false,
+    pairs: getPairsFromUrl(this.props.match.params.pairs)
   };
 
   render() {
+    console.log(this.state.toLoad);
     return (
       <div className="container text-center">
         <Header />
-        <PokeDisplay pairs={this.state.pairs} />
+        <PokeDisplay
+          load={
+            JSON.parse(decodeURIComponent(this.props.match.params.pairs)).load
+              ? true
+              : false
+          }
+          pairs={getPairsFromUrl(this.props.match.params.pairs)}
+        />
       </div>
     );
   }

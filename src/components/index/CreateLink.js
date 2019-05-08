@@ -6,9 +6,20 @@ import ScrollAnimation from "react-animate-on-scroll/";
 export default class CreateLink extends Component {
   render() {
     return (
-      <div className="text-center d-flex container justify-content-center align-items-center">
+      <div className="text-center d-flex container justify-content-around align-items-center">
         <ScrollAnimation delay={1750} animateIn="bounceIn">
-          <Link to="/editor/[]">
+          <Link
+            to={"/editor/" + encodeURIComponent(JSON.stringify({ load: true }))}
+          >
+            <Button size="lg" variant="primary">
+              Load last Soul Link
+            </Button>
+          </Link>
+        </ScrollAnimation>
+        <ScrollAnimation delay={1750} animateIn="bounceIn">
+          <Link
+            to={"/editor/" + encodeURIComponent(JSON.stringify({ new: true }))}
+          >
             <Button size="lg" variant="success">
               Create a Soul Link
             </Button>

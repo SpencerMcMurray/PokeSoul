@@ -10,7 +10,6 @@ export default class PokeDisplay extends Component {
     super(props);
     this.state = {
       pairs: [],
-      hide: " d-none",
       border: "",
       addModalShow: false,
       generateShow: false,
@@ -35,15 +34,21 @@ export default class PokeDisplay extends Component {
   }
 
   componentDidMount() {
-    // Hide the list of pairs until theyre all loaded
-    this.setState({ hide: " d-none" });
-    this.props.pairs.map(pair =>
+    let pairs;
+    if (this.props.load) {
+      pairs = localStorage.getItem("pairs")
+        ? JSON.parse(localStorage.getItem("pairs"))
+        : [];
+    } else {
+      pairs = this.props.pairs;
+    }
+    pairs.map(pair =>
       this.fetchFromApi(pair.a, pair.b, pair.killed, pair.found)
     );
-    this.setState({ hide: "" });
   }
 
-  componentDidUpdate() {
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem("pairs", JSON.stringify(nextState.pairs));
     if (this.state.border === "" && this.state.pairs.length > 0) {
       this.setState({ border: "border rounded border-secondary" });
     }
