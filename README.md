@@ -11,7 +11,7 @@ The main challenge this site addresses is finding the best party that
 satisfies the rules for both players at any given time.
 
 Soul Links can be initalized and the data will be stored and loaded from your
-cookies allowing for easy continuation. A sharable link can also be made so
+local storage allowing for easy continuation. A sharable link can also be made so
 you can easily share your experience with your friends.
 
 # Get Started
