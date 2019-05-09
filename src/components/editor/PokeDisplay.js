@@ -41,10 +41,11 @@ export default class PokeDisplay extends Component {
         : [];
     } else {
       pairs = this.props.pairs;
+      pairs.map(pair =>
+        this.fetchFromApi(pair.a, pair.b, pair.killed, pair.found)
+      );
     }
-    pairs.map(pair =>
-      this.fetchFromApi(pair.a, pair.b, pair.killed, pair.found)
-    );
+    this.setState({ pairs: pairs });
   }
 
   componentWillUpdate(nextProps, nextState) {
