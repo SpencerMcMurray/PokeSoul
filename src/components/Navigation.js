@@ -2,41 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
-// Will be fetched from cookies, or empty initially
-let pairs = [
-  {
-    a: 1,
-    b: 20,
-    killed: false,
-    found: "Route 10"
-  },
-  {
-    a: 3,
-    b: 47,
-    killed: false,
-    found: "Pallet Town"
-  },
-  {
-    a: 5,
-    b: 56,
-    killed: false,
-    found: "Route 123"
-  }
-];
-
 const mainLinks = [
   {
     icon: "",
     title: "Editor",
-    pairs: pairs,
-    href: "/editor/" + encodeURIComponent(JSON.stringify(pairs))
+    href: "/editor/" + encodeURIComponent(JSON.stringify({ load: true }))
   }
 ];
 
 const makeNavItem = (link, idx) => {
   return (
     <Nav.Item key={idx}>
-      <Nav.Link as={Link} to={link.href} params={link.pairs}>
+      <Nav.Link as={Link} to={link.href}>
         {link.icon} {link.title}
       </Nav.Link>
     </Nav.Item>
