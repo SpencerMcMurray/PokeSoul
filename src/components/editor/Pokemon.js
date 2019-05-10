@@ -37,7 +37,7 @@ export default class Pokemon extends Component {
           src={this.props.poke.sprites.front_default}
         />
         <div className="mb-2">
-          {this.props.poke.types.map((item, idx) => {
+          {[...this.props.poke.types].reverse().map((item, idx) => {
             return (
               <Badge
                 style={{ backgroundColor: typeColours[item.type.name] }}

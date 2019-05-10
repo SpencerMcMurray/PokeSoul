@@ -27,9 +27,7 @@ export default class PokeDisplay extends Component {
   async fetchFromApi(aId, bId, killed, found) {
     let newPair = { killed: killed, found: found };
     newPair.a = await P.getPokemonByName(aId);
-    newPair.a.types.reverse();
     newPair.b = await P.getPokemonByName(bId);
-    newPair.b.types.reverse();
     this.setState({ pairs: [...this.state.pairs, await newPair] });
     console.log(await newPair);
   }

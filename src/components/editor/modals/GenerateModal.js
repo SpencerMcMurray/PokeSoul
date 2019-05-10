@@ -47,15 +47,16 @@ const getPartiesFromPairs = pairs => {
       let typeSet = new Set();
       for (let pair in team) {
         pair = team[pair];
+        let numTypes = pair.a.types.length;
         // Do individually to avoid teams with broken pairs
-        if (typeSet.has(pair.a.types[0].type.name)) {
+        if (typeSet.has(pair.a.types[numTypes - 1].type.name)) {
           return false;
         }
-        typeSet.add(pair.a.types[0].type.name);
-        if (typeSet.has(pair.b.types[0].type.name)) {
+        typeSet.add(pair.a.types[numTypes - 1].type.name);
+        if (typeSet.has(pair.b.types[numTypes - 1].type.name)) {
           return false;
         }
-        typeSet.add(pair.b.types[0].type.name);
+        typeSet.add(pair.b.types[numTypes - 1].type.name);
       }
       return true;
     });
