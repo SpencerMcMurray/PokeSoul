@@ -31,6 +31,7 @@ export default class PokeDisplay extends Component {
     newPair.b = await P.getPokemonByName(bId);
     newPair.b.types.reverse();
     this.setState({ pairs: [...this.state.pairs, await newPair] });
+    console.log(await newPair);
   }
 
   componentDidMount() {
@@ -39,18 +40,21 @@ export default class PokeDisplay extends Component {
       pairs = localStorage.getItem("pairs")
         ? JSON.parse(localStorage.getItem("pairs"))
         : [];
+      this.setState({ pairs: pairs });
     } else {
-      pairs = this.props.pairs;
-      pairs.map(pair =>
+      console.log("fetching");
+      this.props.pairs.map(pair =>
         this.fetchFromApi(pair.a, pair.b, pair.killed, pair.found)
       );
     }
-    this.setState({ pairs: pairs });
   }
 
   componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem("pairs", JSON.stringify(nextState.pairs));
-    if (this.state.border === "" && this.state.pairs.length > 0) {
+    console.log("next,", nextState);
+    if (nextState.pairs.length > 0 && nextState.pairs[0].a.types) {
+      localStorage.setItem("pairs", JSON.stringify(nextState.pairs));
+    }
+    if (nextState.border === "" && nextState.pairs.length > 0) {
       this.setState({ border: "border rounded border-secondary" });
     }
   }
@@ -64,6 +68,7 @@ export default class PokeDisplay extends Component {
   }
 
   render() {
+    console.log(this.state.pairs);
     return (
       <React.Fragment>
         <h1 className="title-font pb-2">Pairs</h1>
