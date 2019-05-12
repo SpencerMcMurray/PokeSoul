@@ -6,7 +6,8 @@ const mainLinks = [
   {
     icon: "",
     title: "Editor",
-    href: "/editor/" + encodeURIComponent(JSON.stringify({ load: true }))
+    href:
+      "/PokeSoul/editor/" + encodeURIComponent(JSON.stringify({ load: true }))
   }
 ];
 
