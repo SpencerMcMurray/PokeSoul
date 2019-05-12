@@ -87,7 +87,7 @@ export default class PokeDisplay extends Component {
             onHide: () => this.setState({ shareShow: false })
           }}
         />
-        <div className={this.state.border + this.state.hide}>
+        <div className={this.state.border}>
           <div className="d-flex flex-wrap justify-content-around mb-2">
             {this.state.pairs.map((item, idx) => {
               return (

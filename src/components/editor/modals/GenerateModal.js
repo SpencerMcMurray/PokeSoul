@@ -84,6 +84,11 @@ export default class GenerateModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="d-flex flex-wrap justify-content-center">
+          {getPartiesFromPairs(this.props.pairs).length === 0 ? (
+            <h2 className="text-muted m-auto">No parties available</h2>
+          ) : (
+            ""
+          )}
           {getPartiesFromPairs(this.props.pairs).map((party, idx) => (
             <Party idx={idx + 1} key={idx} members={party} />
           ))}
