@@ -1,9 +1,10 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
+  "name": "PokéSoul",
+  "version": "1.0.0",
+  "homepage": "https://spencermcmurray.github.io/repository-name",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "gh-pages": "^2.0.1",
     "pokeapi-js-wrapper": "^1.1.1",
     "react": "^16.2.0",
     "react-animate-on-scroll": "^2.1.5",
@@ -13,12 +14,13 @@
     "react-scripts": "1.0.17"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000",
   "browserslist": {
     "production": [
       ">0.2%",
