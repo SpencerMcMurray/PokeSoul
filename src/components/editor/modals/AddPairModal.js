@@ -15,22 +15,23 @@ export default class AddPairModal extends Component {
     super(props);
     this.state = {
       mons: [],
-      searchAMons: [],
-      searchBMons: [],
-      searchA: "",
-      searchB: "",
-      pickedA: "1",
-      pickedB: "1",
+      pickedA: 1,
+      pickedB: 1,
       found: ""
     };
   }
 
   async componentDidMount() {
     const allMons = (await P.getPokemonsList()).results;
+    (await allMons).sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA > nameB) return 1;
+      if (nameA < nameB) return -1;
+      return 0;
+    });
     this.setState({
-      mons: await allMons,
-      searchAMons: await allMons,
-      searchBMons: await allMons
+      mons: await allMons
     });
   }
 
@@ -65,7 +66,7 @@ export default class AddPairModal extends Component {
                   value={this.state.pickedA}
                   onChange={evt => this.setState({ pickedA: evt.target.value })}
                 >
-                  {this.state.searchAMons.map((item, idx) => (
+                  {this.state.mons.map((item, idx) => (
                     <option key={idx} value={getIdFromUrl(item.url)}>
                       {capitalize(item.name)}
                     </option>
@@ -79,7 +80,7 @@ export default class AddPairModal extends Component {
                   value={this.state.pickedB}
                   onChange={evt => this.setState({ pickedB: evt.target.value })}
                 >
-                  {this.state.searchBMons.map((item, idx) => (
+                  {this.state.mons.map((item, idx) => (
                     <option key={idx} value={getIdFromUrl(item.url)}>
                       {capitalize(item.name)}
                     </option>

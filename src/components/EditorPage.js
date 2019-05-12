@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PokeDisplay from "./editor/PokeDisplay";
 import Header from "./editor/Header";
+import Footer from "./Footer";
 
 const validPairs = pairs => {
   if (
@@ -39,7 +40,6 @@ export default class EditorPage extends Component {
   };
 
   render() {
-    console.log(this.state.toLoad);
     return (
       <div className="container text-center">
         <Header />
@@ -51,6 +51,7 @@ export default class EditorPage extends Component {
           }
           pairs={getPairsFromUrl(this.props.match.params.pairs)}
         />
+        <Footer />
       </div>
     );
   }

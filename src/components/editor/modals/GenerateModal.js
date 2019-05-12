@@ -47,8 +47,6 @@ const getPartiesFromPairs = pairs => {
       let typeSet = new Set();
       for (let pair in team) {
         pair = team[pair];
-        console.log("pairs:", team);
-        console.log("current:", pair);
         let numTypesA = pair.a.types.length;
         let numTypesB = pair.b.types.length;
         // Do individually to avoid teams with broken pairs

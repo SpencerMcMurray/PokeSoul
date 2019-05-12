@@ -29,7 +29,6 @@ export default class PokeDisplay extends Component {
     newPair.a = await P.getPokemonByName(aId);
     newPair.b = await P.getPokemonByName(bId);
     this.setState({ pairs: [...this.state.pairs, await newPair] });
-    console.log(await newPair);
   }
 
   componentDidMount() {
@@ -40,7 +39,6 @@ export default class PokeDisplay extends Component {
         : [];
       this.setState({ pairs: pairs });
     } else {
-      console.log("fetching");
       this.props.pairs.map(pair =>
         this.fetchFromApi(pair.a, pair.b, pair.killed, pair.found)
       );
@@ -48,7 +46,6 @@ export default class PokeDisplay extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log("next,", nextState);
     if (nextState.pairs.length > 0 && nextState.pairs[0].a.types) {
       localStorage.setItem("pairs", JSON.stringify(nextState.pairs));
     }
@@ -66,7 +63,6 @@ export default class PokeDisplay extends Component {
   }
 
   render() {
-    console.log(this.state.pairs);
     return (
       <React.Fragment>
         <h1 className="title-font pb-2">Pairs</h1>
