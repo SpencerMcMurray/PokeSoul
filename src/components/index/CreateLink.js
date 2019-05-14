@@ -9,10 +9,7 @@ export default class CreateLink extends Component {
       <div className="text-center d-flex container justify-content-around align-items-center">
         <ScrollAnimation delay={1750} animateIn="bounceIn">
           <Link
-            to={
-              "/PokeSoul/editor/" +
-              encodeURIComponent(JSON.stringify({ load: true }))
-            }
+            to={"/editor/" + encodeURIComponent(JSON.stringify({ load: true }))}
           >
             <Button size="lg" variant="primary">
               Load last Soul Link
@@ -21,10 +18,7 @@ export default class CreateLink extends Component {
         </ScrollAnimation>
         <ScrollAnimation delay={1750} animateIn="bounceIn">
           <Link
-            to={
-              "/PokeSoul/editor/" +
-              encodeURIComponent(JSON.stringify({ new: true }))
-            }
+            to={"/editor/" + encodeURIComponent(JSON.stringify({ new: true }))}
           >
             <Button size="lg" variant="success">
               Create a Soul Link
