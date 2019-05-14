@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-const baseUrl = "https://spencermcmurray.github.io/editor/";
+const baseUrl = "https://pokesoul.herokuapp.com/editor/";
 
 const genUrlFromPairs = pairs => {
   let urlPairs = [];
