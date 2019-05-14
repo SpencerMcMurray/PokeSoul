@@ -3,7 +3,14 @@ import PokePair from "./PokePair";
 import ButtonDisplay from "./ButtonDisplay";
 import ModalManager from "./ModalManager";
 const Pokedex = require("pokeapi-js-wrapper");
-const P = new Pokedex.Pokedex();
+const options = {
+  protocol: "https",
+  hostName: "https://pokesoul.herokuapp.com",
+  versionPath: "/api/v2/",
+  cache: true,
+  timeout: 5 * 1000 // 5s
+};
+const P = new Pokedex.Pokedex(options);
 
 export default class PokeDisplay extends Component {
   constructor(props) {
